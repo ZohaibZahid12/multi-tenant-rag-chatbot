@@ -1,0 +1,36 @@
+# Tool configuration only — dependencies live in requirements/*.txt.
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+extend-exclude = ["*/migrations/*"]
+# Apply the excludes even when files are passed explicitly (e.g. by the pre-commit hook).
+force-exclude = true
+
+[tool.ruff.lint]
+select = [
+  "E",   # pycodestyle errors
+  "W",   # pycodestyle warnings
+  "F",   # pyflakes
+  "I",   # import sorting
+  "B",   # bugbear: likely bugs
+  "UP",  # pyupgrade: modern syntax
+  "DJ",  # Django-specific checks
+  "DTZ", # timezone-naive datetimes
+  "SIM", # simplifications
+  "C4",  # comprehensions
+  "PT",  # pytest style
+  "RUF", # ruff-specific
+]
+ignore = [
+  "RUF012", # Django/DRF use mutable class attributes (Meta, permission_classes) by design
+]
+
+[tool.ruff.lint.per-file-ignores]
+# Environment settings modules deliberately star-import base.py.
+"config/settings/*.py" = ["F403", "F405"]
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "config.settings.test"
+python_files = ["test_*.py"]
+addopts = "-ra"

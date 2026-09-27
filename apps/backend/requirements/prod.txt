@@ -1,0 +1,4 @@
+# Production: pip install -r requirements/prod.txt
+-r base.txt
+
+gunicorn~=26.2.0

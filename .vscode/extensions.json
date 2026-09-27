@@ -3,6 +3,8 @@
     "esbenp.prettier-vscode",
     "dbaeumer.vscode-eslint",
     "bradlc.vscode-tailwindcss",
-    "editorconfig.editorconfig"
+    "editorconfig.editorconfig",
+    "ms-python.python",
+    "charliermarsh.ruff"
   ]
 }

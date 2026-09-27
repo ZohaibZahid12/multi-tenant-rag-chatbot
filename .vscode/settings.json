@@ -7,5 +7,16 @@
   "eslint.workingDirectories": [{ "mode": "auto" }],
   "typescript.tsdk": "node_modules/typescript/lib",
   "typescript.enablePromptUseWorkspaceTsdk": true,
-  "files.eol": "\n"
+  "files.eol": "\n",
+
+  "python.defaultInterpreterPath": "${workspaceFolder}/apps/backend/.venv/bin/python",
+  "python.testing.pytestEnabled": true,
+  "python.testing.cwd": "${workspaceFolder}/apps/backend",
+  "[python]": {
+    "editor.defaultFormatter": "charliermarsh.ruff",
+    "editor.codeActionsOnSave": {
+      "source.fixAll.ruff": "explicit",
+      "source.organizeImports.ruff": "explicit"
+    }
+  }
 }
