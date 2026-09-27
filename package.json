@@ -1,0 +1,29 @@
+{
+  "name": "multi-tenant-rag-chatbot",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Multi-tenant RAG chatbot — Next.js frontend + Django REST Framework backend",
+  "workspaces": [
+    "apps/frontend"
+  ],
+  "engines": {
+    "node": ">=20.9.0"
+  },
+  "scripts": {
+    "dev": "npm run dev -w frontend",
+    "build": "npm run build -w frontend",
+    "start": "npm run start -w frontend",
+    "lint": "npm run lint -w frontend",
+    "lint:fix": "npm run lint:fix -w frontend",
+    "typecheck": "npm run typecheck -w frontend",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "prepare": "husky"
+  },
+  "devDependencies": {
+    "husky": "^9.1.7",
+    "lint-staged": "^16.4.0",
+    "prettier": "^3.9.9",
+    "prettier-plugin-tailwindcss": "^0.8.1"
+  }
+}

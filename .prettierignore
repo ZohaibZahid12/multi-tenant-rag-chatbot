@@ -1,0 +1,10 @@
+# Prettier also skips everything in .gitignore.
+
+package-lock.json
+
+# Generated and rewritten by `next dev`
+apps/frontend/AGENTS.md
+apps/frontend/CLAUDE.md
+
+# Backend is Python, formatted with Ruff
+apps/backend/
