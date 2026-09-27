@@ -59,12 +59,33 @@ Each domain feature (for example `tenants`, `documents`, `chat`) gets its own Dj
 `manage.py` uses `config.settings.dev`; override with `DJANGO_SETTINGS_MODULE`.
 Settings read environment variables, and locally also `apps/backend/.env` (copy `.env.example`).
 
-| Variable               | Dev default                 | Production |
-| ---------------------- | --------------------------- | ---------- |
-| `DJANGO_SECRET_KEY`    | insecure dev key            | required   |
-| `DJANGO_ALLOWED_HOSTS` | localhost                   | required   |
-| `DATABASE_URL`         | SQLite `db.sqlite3`         | required   |
-| `CORS_ALLOWED_ORIGINS` | `http://localhost:3000`     | set it     |
+| Variable               | Dev default              | Production |
+| ---------------------- | ------------------------- | ---------- |
+| `DJANGO_SECRET_KEY`    | insecure dev key          | required   |
+| `DJANGO_ALLOWED_HOSTS` | localhost                 | required   |
+| `DATABASE_URL`         | SQLite `db.sqlite3`       | required   |
+| `CORS_ALLOWED_ORIGINS` | `http://localhost:3000`   | set it     |
+
+### Database (Postgres)
+
+Local dev uses Postgres, running on this machine at `localhost:5432`, with a database and
+role dedicated to this project (not the `postgres` superuser):
+
+```
+DATABASE_URL=postgres://rag_chatbot:<password>@localhost:5432/rag_chatbot
+```
+
+The `rag_chatbot` role was created with `LOGIN` and `CREATEDB` (the latter is what lets
+pytest-django create/drop its own `test_rag_chatbot` database on every run). To recreate it
+on a fresh machine, run as a Postgres superuser:
+
+```sql
+CREATE ROLE rag_chatbot WITH LOGIN CREATEDB PASSWORD '<password>';
+CREATE DATABASE rag_chatbot OWNER rag_chatbot ENCODING 'UTF8';
+```
+
+Leaving `DATABASE_URL` unset falls back to SQLite, which is enough for a quick check but not
+what this project runs day to day.
 
 ## API conventions
 
